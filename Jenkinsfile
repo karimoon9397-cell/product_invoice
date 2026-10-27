@@ -1,33 +1,32 @@
-pipeline
-{
+
+pipeline {
     agent any
-    stages
-    {
-        stage('Checkout')
-        {
-            steps
-            {
+
+    tools {
+        maven 'Maven-3.9.16'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
                 echo 'Source code checkout completed'
             }
         }
-        stage('Build')
-        {
-             steps
-             {
+
+        stage('Build') {
+            steps {
                 bat 'mvn clean compile'
-             }
+            }
         }
-        stage('Test')
-        {
-             steps
-             {
+
+        stage('Test') {
+            steps {
                 bat 'mvn test'
-             }
+            }
         }
-        stage('Package')
-        {
-            steps
-            {
+
+        stage('Package') {
+            steps {
                 bat 'mvn package'
             }
         }
